@@ -57,3 +57,25 @@ ws_value_set_init(
     return 0;
 }
 
+struct ws_value_set*
+ws_value_set_new(void) {
+    struct ws_value_set* s = calloc(1, sizeof(*s));
+    if (!s) {
+        return NULL;
+    }
+
+    s->set = ws_set_new();
+    if (!s->set) {
+        free(s);
+        return NULL;
+    }
+
+    if (ws_value_set_init(s) < 0) {
+        ws_object_unref(&s->set->obj);
+        free(s);
+        return NULL;
+    }
+
+    return s;
+}
+
