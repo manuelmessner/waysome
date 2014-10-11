@@ -238,7 +238,9 @@ ws_value_set_select(
     void* pred_etc, //!< Additional parameter for the predicate function
     ws_value_set_procf proc, //!< Processor function
     void* proc_etc //!<Additional parameter for the processor function
-);
+)
+__ws_nonnull__(1)
+;
 
 #endif // __WS_VALUES_SET_H__
 
