@@ -63,6 +63,16 @@ struct ws_socket_client {
 };
 
 /**
+ * Initialize a given ws_socket object
+ *
+ * @return 0 in case of success, else a negative value
+ */
+int
+ws_socket_init(
+    struct ws_socket*   //!< the uninitialized ws_socket object
+);
+
+/**
  *  Create a socket with a given name this socket will be placed in the
  *  XDG_RUNTIME_DIR path
  */
