@@ -28,6 +28,10 @@
 #ifndef __WS_UTIL_SOCKET_H__
 #define __WS_UTIL_SOCKET_H__
 
+#include <ev.h>
+
+#include "connection/processor.h"
+
 /**
  *  Create a socket with a given name this socket will be placed in the
  *  XDG_RUNTIME_DIR path
