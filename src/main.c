@@ -134,7 +134,7 @@ main(
     struct ws_object context;
     ws_object_init(&context);
     context.id = &WS_OBJECT_TYPE_ID_CONTEXT;
-    
+
     retval = ws_action_manager_init(&context);
     if (retval != 0) {
         ws_log(&log_main, LOG_EMERG, "Failed to start up action manager.");
@@ -142,6 +142,15 @@ main(
     }
 
     ws_log(&log_main, LOG_DEBUG, "Acton manager started up.");
+
+    struct ws_socket plugin_socket;
+    retval = ws_socket_init(&plugin_socket);
+    if (retval != 0) {
+        ws_log(&log_main, LOG_EMERG, "Failed to open waysome plugin socket.");
+        goto cleanup;
+    }
+
+    ws_log(&log_main, LOG_DEBUG, "Waysome plugin socket opened. Listening now");
 
     // everything did go well
     retval = 0;
