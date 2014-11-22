@@ -42,6 +42,19 @@
 
 static struct ws_logger_context log_ctx = { .prefix = "[Sockets Utils] " };
 
+static void
+socket_read_cb(
+    struct ev_loop* loop,
+    struct ev_io* io,
+    int revents
+) {
+    //!< @todo I'll add this when ws_(de)serializer_new is implemented
+    if (revents & EV_ERROR) {
+        ws_log(&log_ctx, LOG_WARNING, "Libev error in read callback!");
+        return;
+    }
+}
+
 int
 ws_socket_create(
     char const* name
