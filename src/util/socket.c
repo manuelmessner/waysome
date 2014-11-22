@@ -37,6 +37,7 @@
 #include "util/socket.h"
 
 #define XDG_RUNTIME_DIR "XDG_RUNTIME_DIR"
+#define UNIX_PATH "waysome.sock"
 #define UNIX_PATH_MAX 108
 
 static struct ws_logger_context log_ctx = { .prefix = "[Sockets Utils] " };
