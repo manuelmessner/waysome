@@ -52,14 +52,14 @@
  */
 
 struct ws_socket {
-    struct ev_io io;    //!< ev_io object for libev
-    int fd;             //!< file descriptor of the created socket
+    struct ev_io io;    //!< @protected ev_io object for libev
+    int fd;             //!< @protected file descriptor of the created socket
 };
 
 struct ws_socket_client {
-    struct ev_io io;                    //!< ev_io object for libev
-    struct ws_connection_manager* cm;   //!< reference to a con_man object
-    int fd;                             //!< fd of the accepted client
+    struct ev_io io;                    //!< @protected ev_io object for libev
+    struct ws_connection_manager* cm;   //!< @protected ref to a con_man object
+    int fd;                             //!< @protected fd of accepted client
 };
 
 /**
