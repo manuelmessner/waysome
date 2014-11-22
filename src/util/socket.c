@@ -104,6 +104,28 @@ socket_accept_cb(
 }
 
 int
+ws_socket_init(
+    struct ws_socket* s
+) {
+    struct ev_loop* loop = ev_default_loop(EVFLAG_AUTO);
+    if (!loop) {
+        ws_log(&log_ctx, LOG_WARNING, "Could not initialize ev loop!");
+        free(s);
+        return -1;
+    }
+
+    s->fd = ws_socket_create(UNIX_PATH);
+    if (s->fd < 0) {
+        return -1;
+    }
+
+    ev_io_init(&s->io, socket_accept_cb, s->fd, EV_READ);
+    ev_io_start(loop, &s->io);
+
+    return 0;
+}
+
+int
 ws_socket_create(
     char const* name
 ) {
