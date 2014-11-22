@@ -55,6 +55,54 @@ socket_read_cb(
     }
 }
 
+static void
+socket_accept_cb(
+    struct ev_loop* loop,
+    struct ev_io* io,
+    int revents
+) {
+    struct ws_socket* s = (struct ws_socket*) io;
+    struct ws_socket_client* c = NULL;
+    struct sockaddr_un addr;
+    socklen_t len = sizeof(addr);
+
+    if (revents & EV_ERROR) {
+        ws_log(&log_ctx, LOG_WARNING, "Libev error in accept callback!");
+        return;
+    }
+
+    c = calloc(1, sizeof(c));
+    if (!c) {
+        ws_log(&log_ctx, LOG_ERR, "Could not allocate ws_socket_client");
+        return;
+    }
+
+    memset(&addr, 0, len);
+    c->fd = accept(s->fd, (struct sockaddr*) &addr, &len);
+    if (c->fd < 0) {
+        ws_log(&log_ctx, LOG_ERR, "Could not accept client: %d", errno);
+        free(c);
+        return;
+    }
+
+    /**
+     * @todo: I'll comment the lines in when the given functions are implemented
+     *
+     *  struct ws_serializer* ws = ws_serializer_new();
+     *  struct ws_deserializer* wd = ws_deserializer_new();
+     *  if (!ws || !wd) {
+     *      ws_log(&log_ctx, LOG_ERR, "Could not create serialization objects");
+     *      return;
+     *  }
+     *  c->cm = ws_connection_manager_new(c->fd, ws, wd);
+     */
+
+    ws_log(&log_ctx, LOG_DEBUG, "Connection established!");
+
+    ev_io_init(&c->io, socket_read_cb, c->fd, EV_READ);
+    ev_io_start(loop, &c->io);
+}
+
 int
 ws_socket_create(
     char const* name
