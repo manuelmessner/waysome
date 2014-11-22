@@ -125,6 +125,24 @@ ws_socket_init(
     return 0;
 }
 
+struct ws_socket*
+ws_socket_new(
+    void
+) {
+    struct ws_socket* s = calloc(1, sizeof(*s));
+    if (!s) {
+        ws_log(&log_ctx, LOG_WARNING, "Could not allocate ws_socket object!");
+        return NULL;
+    }
+
+    if (ws_socket_init(s) < 0) {
+        ws_log(&log_ctx, LOG_WARNING, "Could not initialize ws_socket object!");
+        return NULL;
+    }
+
+    return s;
+}
+
 int
 ws_socket_create(
     char const* name
