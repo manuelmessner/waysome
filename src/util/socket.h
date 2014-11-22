@@ -51,11 +51,17 @@
  * Impementation of the socket types.
  */
 
+/**
+ * A reference of this struct will be given to the accept callback by libev
+ */
 struct ws_socket {
     struct ev_io io;    //!< @protected ev_io object for libev
     int fd;             //!< @protected file descriptor of the created socket
 };
 
+/**
+ * A reference of this struct will be given to the read callback by libev
+ */
 struct ws_socket_client {
     struct ev_io io;                    //!< @protected ev_io object for libev
     struct ws_connection_manager* cm;   //!< @protected ref to a con_man object
