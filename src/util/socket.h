@@ -48,6 +48,21 @@
 #include "connection/processor.h"
 
 /**
+ * Impementation of the socket types.
+ */
+
+struct ws_socket {
+    struct ev_io io;    //!< ev_io object for libev
+    int fd;             //!< file descriptor of the created socket
+};
+
+struct ws_socket_client {
+    struct ev_io io;                    //!< ev_io object for libev
+    struct ws_connection_manager* cm;   //!< reference to a con_man object
+    int fd;                             //!< fd of the accepted client
+};
+
+/**
  *  Create a socket with a given name this socket will be placed in the
  *  XDG_RUNTIME_DIR path
  */
