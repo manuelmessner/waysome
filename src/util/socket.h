@@ -73,6 +73,14 @@ ws_socket_init(
 );
 
 /**
+ * Creates a new ws_socket_object and initializes it.
+ *
+ * @return The new object on success, else NULL
+ */
+struct ws_socket*
+ws_socket_new(void);
+
+/**
  *  Create a socket with a given name this socket will be placed in the
  *  XDG_RUNTIME_DIR path
  */
