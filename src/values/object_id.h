@@ -58,6 +58,14 @@ __ws_nonnull__(1)
 ;
 
 /**
+ * Create a new ws_value_object_id object
+ *
+ * @memberof ws_value_object_id
+ */
+struct ws_value_object_id*
+ws_value_object_id_new(void);
+
+/**
  * Get the saved reference to a ws_object object from a given ws_value_object_id
  * object
  *
