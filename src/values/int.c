@@ -26,6 +26,7 @@
  */
 
 #include <errno.h>
+#include <malloc.h>
 #include <pthread.h>
 #include <stdint.h>
 
@@ -43,6 +44,18 @@ ws_value_int_init(
         self->value.type = WS_VALUE_TYPE_INT;
         self->value.deinit_callback = NULL;
     }
+}
+
+struct ws_value_int*
+ws_value_int_new(void)
+{
+    struct ws_value_int* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return  NULL;
+    }
+
+    ws_value_int_init(v);
+    return v;
 }
 
 int
