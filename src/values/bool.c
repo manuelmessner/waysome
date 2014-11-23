@@ -26,6 +26,7 @@
  */
 
 #include <errno.h>
+#include <malloc.h>
 #include <pthread.h>
 #include <stdbool.h>
 
@@ -42,6 +43,18 @@ ws_value_bool_init(
         self->value.type = WS_VALUE_TYPE_BOOL;
         self->value.deinit_callback = NULL;
     }
+}
+
+struct ws_value_bool*
+ws_value_bool_new(void)
+{
+    struct ws_value_bool* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return NULL;
+    }
+
+    ws_value_bool_init(v);
+    return v;
 }
 
 bool
