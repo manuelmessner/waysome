@@ -63,6 +63,19 @@ ws_value_named_value_init(
     self->value.deinit_callback = deinit_namedval;
 }
 
+struct ws_value_named_value*
+ws_value_named_value_new(void)
+{
+
+    struct ws_value_named_value* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return NULL;
+    }
+
+    ws_value_named_value_init(v);
+    return v;
+}
+
 int
 ws_value_named_set_name(
     struct ws_value_named_value* self,
