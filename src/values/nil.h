@@ -54,8 +54,15 @@ ws_value_nil_init(
 __ws_nonnull__(1)
 ;
 
+/**
+ * Create a new ws_value_nil object
+ */
+struct ws_value_nil*
+ws_value_nil_new(void);
+
 #endif // __WS_VALUES_NIL_H__
 
 /**
  * @}
  */
+
