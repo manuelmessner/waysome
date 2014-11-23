@@ -58,6 +58,17 @@ ws_value_object_id_init(
     self->val.deinit_callback = value_object_id_deinit;
 }
 
+struct ws_value_object_id*
+ws_value_object_id_new(void) {
+    struct ws_value_object_id* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return NULL;
+    }
+
+    ws_value_object_id_init(v);
+    return v;
+}
+
 struct ws_object*
 ws_value_object_id_get(
     struct ws_value_object_id* self
