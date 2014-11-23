@@ -25,6 +25,8 @@
  * along with waysome. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <malloc.h>
+
 #include "values/value.h"
 #include "values/value_type.h"
 
@@ -38,6 +40,17 @@ ws_value_init(
         self->type = WS_VALUE_TYPE_VALUE;
         self->deinit_callback = ws_value_deinit;
     }
+}
+
+struct ws_value*
+ws_value_new(void) {
+    struct ws_value* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return NULL;
+    }
+
+    ws_value_init(v);
+    return v;
 }
 
 void
