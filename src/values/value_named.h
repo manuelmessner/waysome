@@ -61,6 +61,14 @@ ws_value_named_value_init(
 );
 
 /**
+ * Create a new ws_value_named_value object
+ *
+ * @memberof ws_value_named_value
+ */
+struct ws_value_named_value*
+ws_value_named_value_new(void);
+
+/**
  * Set the name of an ws_value_named_value object
  *
  * @memberof ws_value_named_value
