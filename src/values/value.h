@@ -63,6 +63,12 @@ __ws_nonnull__(1)
 ;
 
 /**
+ * Create a new ws_value object
+ */
+struct ws_value*
+ws_value_new(void);
+
+/**
  * Deinit a value object
  */
 void
