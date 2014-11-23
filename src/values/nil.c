@@ -25,6 +25,8 @@
  * along with waysome. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <malloc.h>
+
 #include "values/nil.h"
 
 #include "values/value.h"
@@ -45,3 +47,16 @@ ws_value_nil_init(
         //self->value.deinit_callback = nil_deinit;
     }
 }
+
+struct ws_value_nil*
+ws_value_nil_new(void)
+{
+    struct ws_value_nil* v = calloc(1, sizeof(*v));
+    if (!v) {
+        return NULL;
+    }
+
+    ws_value_nil_init(v);
+    return v;
+}
+
