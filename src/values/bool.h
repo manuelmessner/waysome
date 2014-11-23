@@ -60,6 +60,14 @@ ws_value_bool_init(
 );
 
 /**
+ * Creates a new ws_value_bool object
+ *
+ * @memberof ws_value_bool
+ */
+struct ws_value_bool*
+ws_value_bool_new(void);
+
+/**
  * Get a plain `bool` from the ws_value_bool object
  *
  * @memberof ws_value_bool
