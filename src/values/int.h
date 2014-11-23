@@ -64,6 +64,14 @@ ws_value_int_init(
 );
 
 /**
+ * Create a new ws_value_int object
+ *
+ * @memberof ws_value_int
+ */
+struct ws_value_int*
+ws_value_int_new(void);
+
+/**
  * Set an ws_value_int object to a specific value
  *
  * @memberof ws_value_int
